@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Reference:
+http://callmenick.com/post/css-toggle-switch-examples
+-->
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Martial Arts Skill Randomizer</title>
+<link rel="stylesheet" href="rollersheetdark.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Fondamento" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="dojo_dice.js"></script>
+</head>
+
+<body>
+
+<h1>Martial Arts Skill Randomizer</h1>
+
+<p class="results" id="report"<em>Set the options and pick something!</em><p>
+
+<p><button type="button" id="lever" onclick="roll()">Go!</button>
+
+<h2>Options</h2>
+
+<p><strong>Skill Level</strong></p>
+<input type="checkbox" class="toggle toggle-long" id="difficulty_basic" checked><label for="difficulty_basic" data-on="Basic" data-off="Basic"></label>
+<br/>
+<input type="checkbox" class="toggle toggle-long" id="difficulty_inter" checked><label for="difficulty_inter" data-on="Intermediate" data-off="Intermediate"></label>
+<br/>
+<input type="checkbox" class="toggle toggle-long" id="difficulty_advanced" checked><label for="difficulty_advanced" data-on="Advanced" data-off="Advanced"></label>
+
+<p>Page design and code by Jennifer Neff.</p>
+<p>Color scheme based on Ethan Schoonover's <a href="https://ethanschoonover.com/solarized">Solarized</a>
+
+</body>
+
+
+</html>
