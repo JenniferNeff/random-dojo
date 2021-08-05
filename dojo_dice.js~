@@ -106,17 +106,17 @@ var spin = async function (event) {
 
         // https://flaviocopes.com/how-to-shuffle-array-javascript
 	filtered_skills.sort(() => Math.random() - 0.5);
-	//filtered_skills.forEach(e => console.log(e.name));
+	filtered_skills.forEach(e => console.log(e.name));
 
 	var spin_length = Math.min(8, filtered_skills.length);
-	//console.log("Spin length: " + spin_length);
+	console.log("Spin length: " + spin_length);
 	var delay = [300];
 	for (var d=0; d < spin_length-2; d++) {
 		delay.push(Math.max(delay[d] - 25, 100));
 	}
 	delay[0] = 550;
 	delay.reverse();
-	//console.log(delay);
+	console.log(delay);
 
 	for (var i=0; i < spin_length-1; i++) { // save the last for after the last promise-pause
 		document.getElementById("report").innerHTML = "<div style=\"opacity: 50%;\"><em>" + filtered_skills[i].name + "</em></div>";

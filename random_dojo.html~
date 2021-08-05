@@ -22,7 +22,7 @@ http://callmenick.com/post/css-toggle-switch-examples
 <p class="results" id="report"<em>Set the options and pick something!</em><p>
 
 <p>
- <button type="button" id="lever" onclick="roll()">Instant</button>
+ <button type="button" id="lever" onclick="roll()">Go!</button>
  <button type="button" id="wheel" onclick="spin()">Spin!</button>
 </p>
 
