@@ -97,6 +97,9 @@ var roll = function (event) {
 
 var spin = async function (event) {
 
+	document.getElementById("lever").setAttribute("disabled", "disabled");
+	document.getElementById("wheel").setAttribute("disabled", "disabled");
+
 	var filtered_skills = build_filter(skills);
 
 	if (filtered_skills.length == 0) {
@@ -125,5 +128,7 @@ var spin = async function (event) {
 	}
 	document.getElementById("report").innerHTML = filtered_skills[spin_length-1].name;
 
+	document.getElementById("lever").removeAttribute("disabled");
+	document.getElementById("wheel").removeAttribute("disabled");
 
 }
