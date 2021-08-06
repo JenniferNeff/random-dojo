@@ -22,7 +22,7 @@ http://callmenick.com/post/css-toggle-switch-examples
 <p class="results" id="report"<em>Set the options and pick something!</em><p>
 
 <p>
- <button type="button" id="lever" onclick="roll()">Go!</button>
+ <button type="button" id="lever" onclick="roll()">Instant</button>
  <button type="button" id="wheel" onclick="spin()">Spin!</button>
 </p>
 
@@ -34,6 +34,12 @@ http://callmenick.com/post/css-toggle-switch-examples
 <input type="checkbox" class="toggle toggle-long" id="difficulty_inter" checked><label for="difficulty_inter" data-on="Intermediate" data-off="Intermediate"></label>
 <br/>
 <input type="checkbox" class="toggle toggle-long" id="difficulty_advanced" checked><label for="difficulty_advanced" data-on="Advanced" data-off="Advanced"></label>
+
+<br/>
+
+<p><strong>Cooldown</strong></p>
+<input type="checkbox" class="toggle toggle-long" id="cool_toggle"><label for="cool_toggle" data-on="Disallow repeats" data-off="Allow repeats"></label>
+<p><label for ="cooldown">Skills cannot repeat for this many turns:</label> <input type="number" id="cooldown" name="cooldown" min="0" value="0"><br/><em>Set zero to never repeat. Reload page to clear memory.</em></p>
 
 <p>Page design and code by Jennifer Neff.</p>
 <p>Color scheme based on Ethan Schoonover's <a href="https://ethanschoonover.com/solarized">Solarized</a>

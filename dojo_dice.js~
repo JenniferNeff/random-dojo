@@ -46,18 +46,22 @@ skills.push(new Skill("Very tricky example disarm", 'advanced', 'krav', 'all', f
 // Don't add things past this comment!
 //
 var filtered_skills = skills;
+var memory = [];
 
 // Making a function that works like Python's isin functionality.
-// Does the list contain this item? Returns true or false.
+// Does the list contain this item?
+// If yesOrNo is true, return true if the list contains the item.
+// If yesOrNo is false, return true if the list does NOT contain the item.
 
-function isIn(item, list) {
-	return list.some(function(i) {return i === item;})
+function isIn(item, list, yesOrNo) {
+	return (list.some(function(i) {return i === item;})) == yesOrNo;
 }
 
 // This filters the list. Do this before every user action to select a skill.
 // Returns the filtered list.
 
 function build_filter(list) {
+
 	var skill_levels = [];
 	if (document.getElementById('difficulty_basic').checked) {skill_levels.push('basic');}
 	if (document.getElementById('difficulty_inter').checked) {skill_levels.push('inter');}
@@ -67,10 +71,16 @@ function build_filter(list) {
 	var types = ['all'];
 	// account for hazards here too, if disallowed entirely
 	
+	var allow_repeats = !document.getElementById("cool_toggle").checked;
+	var cooldown = parseInt(document.getElementById("cooldown").value);
+	console.log(cooldown);
+	console.log("Filtering with memory: " + memory);
+	
 	var filtered_skills = skills.filter(
-		function(i) {return isIn(i.level, skill_levels) &&
-		                    isIn(i.style, styles) &&
-		                    isIn(i.type, types);});
+		function(i) {return isIn(i.level, skill_levels, true) &&
+		                    isIn(i.style, styles, true) &&
+		                    isIn(i.type, types, true) &&
+				    (allow_repeats || isIn(i.name, memory.slice(0-cooldown), false));});
 	// AND hazard status
 	
 	return filtered_skills;
@@ -86,7 +96,9 @@ var roll = function (event) {
 	
 	var answer = "Empty set of skills.\nTry turning on more options.";
 	
-	if (filtered_skills.length > 0) {answer = filtered_skills[Math.floor(Math.random()*filtered_skills.length)].name;}
+	if (filtered_skills.length > 0) {answer = filtered_skills[Math.floor(Math.random()*filtered_skills.length)].name;
+		memory.push(answer);
+	}
 
 	document.getElementById("report").innerHTML = answer;
 };
@@ -96,6 +108,9 @@ var roll = function (event) {
 // choose instantly rather than replacing it.
 
 var spin = async function (event) {
+
+	document.getElementById("lever").setAttribute("disabled", "disabled");
+	document.getElementById("wheel").setAttribute("disabled", "disabled");
 
 	var filtered_skills = build_filter(skills);
 
@@ -123,7 +138,11 @@ var spin = async function (event) {
 		// https://appdividend.com/2020/07/31/javascript-wait-how-to-make-function-wait-in-javascript/
 		await new Promise(r => setTimeout(r, delay[i]));
 	}
-	document.getElementById("report").innerHTML = filtered_skills[spin_length-1].name;
+	answer = filtered_skills[spin_length-1].name;
+	memory.push(answer);
+	document.getElementById("report").innerHTML = answer;
 
+	document.getElementById("lever").removeAttribute("disabled");
+	document.getElementById("wheel").removeAttribute("disabled");
 
 }
